@@ -12,11 +12,11 @@ Pac-Man is a maze arcade game where you guide a yellow character to eat dots and
 
 ## __Structure__
 
-- `ENGINE` -- implement game bases
-- `PLAYER` -- player , PC or Human 
-- `MAP` -- a field with obstacles
-- `DIRECTION` -- path that player chase 
-- `ENEMY` - take damage to player
-- `POINT` - thing collected by player
-- `REWARD` - collectable special thing 
-- `VIEW` - layout of the game
+- `Engine` -- implement game bases
+- `Player` -- player , PC or Human 
+- `Map` -- a field with obstacles
+- `Direction` -- path that player chase 
+- `Enemy` -- take damage to player
+- `Point` -- thing collected by player
+- `Reward` -- collectable special thing 
+- `View` -- layout of the game
