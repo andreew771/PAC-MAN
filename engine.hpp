@@ -3,12 +3,12 @@
 #include "enemy.hpp"
 #include "reward.hpp"
 
-class GameEngine {
+class Engine {
     Player _player;
     Enemy _enemy;
     Reward _reward;
 public:
-    GameEngine();
+    Engine();
     void Init();
     void Run();
 };
