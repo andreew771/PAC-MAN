@@ -1,5 +1,6 @@
-#pragma once 
+#pragma once
 class Map {
-    int width;
-    int height;
+    int width, height;
+public:
+    Map(int w=10, int h=10);
 };
