@@ -2,7 +2,7 @@
 
 ## Description
 
-This project implements a Pac-Man game in C++ as part of Lab 2. The task builds upon previous lab assignments and is developed in the `lab02` branch of the repository. The project includes multiple source files (`*.cpp`) and header files (`*.h`) that define structures and classes for the game logic, along with a `Makefile` for manual compilation and building of the project.
+This project implements a Pac-Man game in C++ as part of Lab 2. The task builds upon previous lab assignments and is developed in the `lab02` branch of the repository. The project includes multiple source files (`*.cpp`) that define structures and classes for the game logic, along with a `Makefile` for manual compilation and building of the project.
 
 ## Requirements
 
