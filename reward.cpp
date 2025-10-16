@@ -1,7 +1,9 @@
 #include "reward.hpp"
 
-struct Reward {
-    Point _position{3,3};
+Reward::Reward() : _position{3,3} {}  
 
-    Point GetPosition() { return _position; }
-};
+Reward::Reward(const Point& pos) : _position(pos) {} 
+
+Point Reward::GetPosition() const { 
+    return _position; 
+}
