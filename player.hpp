@@ -6,21 +6,16 @@
 class Player {
     Point _position;
 public:
-    Player() = default;
-    Player(const Point& pos) : _position(pos) {}
-    Player(const Player& other) : _position(other._position) {}
+    Player();
+    Player(const Point& pos);
+    Player(const Player& other);
+    Point GetPosition() const;
 
-    Player& operator=(const Player& other) {
-        if (this != &other) _position = other._position;
-        return *this;
-    }
+    Player operator=(const Player& other);
+    bool operator==(const Player& other) const;
 
-    Point GetPosition() const { return _position; }
     void Move(Direction dir);
 
-    bool operator==(const Player& other) const { return _position == other._position; }
-    bool operator!=(const Player& other) const { return !(*this == other); }
-
-    friend std::ostream& operator<<(std::ostream& os, const Player& p) { return os << p._position; }
-    friend std::istream& operator>>(std::istream& is, Player& p) { return is >> p._position; }
+    friend std::istream& operator>>(std::istream& in, Player& p);
+    friend std::ostream& operator<<(std::ostream& out, const Player& p);
 };
