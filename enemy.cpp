@@ -1,9 +1,5 @@
 #include "enemy.hpp"
 
-Point Enemy::GetPosition() { 
-    return _position; 
-}
-
 void Enemy::Move(Direction dir) {
     switch (dir) {
         case Direction::UP:    _position.y--; break;
