@@ -5,20 +5,14 @@
 class Reward {
     Point _position;
 public:
-    Reward() : _position(3,3) {}
-    Reward(const Point& pos) : _position(pos) {}
-    Reward(const Reward& other) : _position(other._position) {}
+    Reward();
+    Reward(const Point& pos);
+    Reward(const Reward& other);
+    Point GetPosition() const;
 
-    Reward& operator=(const Reward& other) {
-        if (this != &other) _position = other._position;
-        return *this;
-    }
+    Reward operator=(const Reward& other);
+    bool operator==(const Reward& other) const;
 
-    Point GetPosition() const { return _position; }
-
-    bool operator==(const Reward& other) const { return _position == other._position; }
-    bool operator!=(const Reward& other) const { return !(*this == other); }
-
-    friend std::ostream& operator<<(std::ostream& os, const Reward& r) { return os << r._position; }
-    friend std::istream& operator>>(std::istream& is, Reward& r) { return is >> r._position; }
+    friend std::istream& operator>>(std::istream& in, Reward& r);
+    friend std::ostream& operator<<(std::ostream& out, const Reward& r);
 };
