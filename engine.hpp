@@ -9,7 +9,7 @@ class Engine {
     Enemy _enemy;
     Reward _reward;
 public:
-    Engine() = default;
-    void Init() {}
+    Engine();
+    void Init();
     void Run();
 };
