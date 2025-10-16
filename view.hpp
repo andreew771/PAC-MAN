@@ -1,17 +1,18 @@
 #pragma once
-#include "point.hpp"
+#include "abstract_painter.hpp"
 #include <iostream>
 
-// Clasă abstractă pentru redarea obiectelor de joc
-class ViewBase {
+class View : public AbstractPainter {
 public:
-    virtual void Draw(Point pos, char symbol) = 0;
-    virtual ~ViewBase() = default;
-};
+    void DrawImage(Point topLeft, Point bottomRight, char** image) override {
+        std::cout << "Drawing image from " << topLeft << " to " << bottomRight << "\n";
+    }
 
-class View : public ViewBase {
-public:
-    void Draw(Point pos, char symbol) override {
+    void WriteText(Point position, char* text) override {
+        std::cout << "Writing text at " << position << ": " << text << "\n";
+    }
+
+    void Draw(Point pos, char symbol) {
         std::cout << symbol << " at " << pos << "\n";
     }
 };
