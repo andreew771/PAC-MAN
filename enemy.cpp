@@ -1,14 +1,12 @@
 #include "enemy.hpp"
 
-Point Enemy::GetPosition() { 
-    return _position; 
+std::istream& operator>>(std::istream& in, Enemy& e) {
+    Point pt;
+    if (in >> pt) e._pos = pt;
+    return in;
 }
 
-void Enemy::Move(Direction dir) {
-    switch (dir) {
-        case Direction::UP:    _position.y--; break;
-        case Direction::DOWN:  _position.y++; break;
-        case Direction::LEFT:  _position.x--; break;
-        case Direction::RIGHT: _position.x++; break;
-    }
+std::ostream& operator<<(std::ostream& out, const Enemy& e) {
+    out << e._pos;
+    return out;
 }
