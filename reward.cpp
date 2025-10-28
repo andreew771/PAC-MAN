@@ -1,9 +1,12 @@
 #include "reward.hpp"
 
-Reward::Reward() : _position{3,3} {}  
+std::istream& operator>>(std::istream& in, Reward& r) {
+    Point pt;
+    if (in >> pt) r._pos = pt;
+    return in;
+}
 
-Reward::Reward(const Point& pos) : _position(pos) {} 
-
-Point Reward::GetPosition() const { 
-    return _position; 
+std::ostream& operator<<(std::ostream& out, const Reward& r) {
+    out << r._pos;
+    return out;
 }
