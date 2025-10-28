@@ -1,10 +1,12 @@
 #include "player.hpp"
 
-void Player::Move(Direction dir) {
-    switch (dir) {
-        case Direction::UP:    _position.y--; break;
-        case Direction::DOWN:  _position.y++; break;
-        case Direction::LEFT:  _position.x--; break;
-        case Direction::RIGHT: _position.x++; break;
-    }
+std::istream& operator>>(std::istream& in, Player& p) {
+    Point pt;
+    if (in >> pt) p._pos = pt;
+    return in;
+}
+
+std::ostream& operator<<(std::ostream& out, const Player& p) {
+    out << p._pos;
+    return out;
 }
