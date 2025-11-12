@@ -1,12 +1,22 @@
 #include "reward.hpp"
 
-std::istream& operator>>(std::istream& in, Reward& r) {
-    Point pt;
-    if (in >> pt) r._pos = pt;
-    return in;
+Reward::Reward(const std::string& n, int v) : name(n), value(v) {}
+Reward::Reward(const Reward& other) : name(other.name), value(other.value) {}
+
+Reward& Reward::operator=(const Reward& other) {
+    name = other.name;
+    value = other.value;
+    return *this;
 }
 
+bool Reward::operator==(const Reward& other) const {
+    return name == other.name && value == other.value;
+}
+
+int Reward::GetValue() const { return value; }
+std::string Reward::GetName() const { return name; }
+
 std::ostream& operator<<(std::ostream& out, const Reward& r) {
-    out << r._pos;
+    out << r.name << " +" << r.value << " pts";
     return out;
 }
