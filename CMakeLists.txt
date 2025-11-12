@@ -20,8 +20,8 @@ add_library(GameUtils STATIC
     src/utils/scoreboard.cpp
 )
 
-# Executabil
+
 add_executable(GameApp src/main.cpp)
 
-# Legăm bibliotecile
+
 target_link_libraries(GameApp PRIVATE GameEntities GameCore GameUtils)
