@@ -1,27 +1,77 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -I./src -I./src/Engine -I./src/Entities -I./src/Map -I./src/View -I./src/Utils
+CXXFLAGS = -std=c++17 -Wall -I./src -I./src/Entities -I./src/Engine -I./src/Map -I./src/View -I./src/Utils
+AR = ar rcs
 
-SRC = \
-    src/main.cpp \
-    src/Engine/engine.cpp \
+#===============#
+#   SRC FILES   #
+#===============#
+
+ENTITIES_SRC = \
     src/Entities/player.cpp \
     src/Entities/enemy.cpp \
-    src/Entities/reward.cpp \
+    src/Entities/reward.cpp
+
+CORE_SRC = \
+    src/Engine/engine.cpp \
     src/Map/map.cpp \
-    src/View/view.cpp \
+    src/View/view.cpp
+
+UTILS_SRC = \
     src/Utils/scoreboard.cpp
 
-OBJ = $(SRC:.cpp=.o)
+MAIN_SRC = src/main.cpp
+
+#===============#
+#   OBJECTS     #
+#===============#
+
+ENTITIES_OBJ = $(ENTITIES_SRC:.cpp=.o)
+CORE_OBJ = $(CORE_SRC:.cpp=.o)
+UTILS_OBJ = $(UTILS_SRC:.cpp=.o)
+MAIN_OBJ = $(MAIN_SRC:.cpp=.o)
+
+#===============#
+#   LIBRARIES   #
+#===============#
+
+ENTITIES_LIB = lib/libEntities.a
+CORE_LIB = lib/libCore.a
+UTILS_LIB = lib/libUtils.a
 
 TARGET = pacman
 
-all: $(TARGET)
+#===============#
+#   BUILD STEPS #
+#===============#
 
-$(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $(TARGET)
+all: libs $(TARGET)
+
+libs: $(ENTITIES_LIB) $(CORE_LIB) $(UTILS_LIB)
+
+$(ENTITIES_LIB): $(ENTITIES_OBJ)
+	@mkdir -p lib
+	$(AR) $(ENTITIES_LIB) $(ENTITIES_OBJ)
+
+$(CORE_LIB): $(CORE_OBJ)
+	@mkdir -p lib
+	$(AR) $(CORE_LIB) $(CORE_OBJ)
+
+$(UTILS_LIB): $(UTILS_OBJ)
+	@mkdir -p lib
+	$(AR) $(UTILS_LIB) $(UTILS_OBJ)
+
+$(TARGET): $(MAIN_OBJ)
+	$(CXX) $(MAIN_OBJ) -L./lib -lEntities -lCore -lUtils -o $(TARGET)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	del /Q $(subst /,\,$(OBJ)) $(TARGET).exe 2>nul || true
+	del /Q $(subst /,\,$(ENTITIES_OBJ)) 2>nul || true
+	del /Q $(subst /,\,$(CORE_OBJ)) 2>nul || true
+	del /Q $(subst /,\,$(UTILS_OBJ)) 2>nul || true
+	del /Q $(subst /,\,$(MAIN_OBJ)) 2>nul || true
+	del /Q lib\*.a 2>nul || true
+	del /Q $(TARGET).exe 2>nul || true
+
+.PHONY: all clean libs
