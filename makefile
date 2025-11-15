@@ -52,27 +52,31 @@ all: libs $(TARGET)
 
 libs: $(ENTITIES_LIB) $(CORE_LIB) $(UTILS_LIB)
 
+# Create Entities library
 $(ENTITIES_LIB): $(ENTITIES_OBJ)
 	@mkdir -p lib
 	$(AR) $(ENTITIES_LIB) $(ENTITIES_OBJ)
 
+# Create Core library
 $(CORE_LIB): $(CORE_OBJ)
 	@mkdir -p lib
 	$(AR) $(CORE_LIB) $(CORE_OBJ)
 
+# Create Utils library
 $(UTILS_LIB): $(UTILS_OBJ)
 	@mkdir -p lib
 	$(AR) $(UTILS_LIB) $(UTILS_OBJ)
 
-$(TARGET): $(MAIN_OBJ) $(ENTITIES_LIB) $(CORE_LIB) $(UTILS_LIB)
-	$(CXX) $(MAIN_OBJ) -L./lib -lEntities -lCore -lUtils -o $(TARGET)
+# Link executable
+$(TARGET): $(MAIN_OBJ) $(CORE_LIB) $(ENTITIES_LIB) $(UTILS_LIB)
+	$(CXX) $(MAIN_OBJ) -L./lib -lCore -lEntities -lUtils -o $(TARGET)
 
-# Rule to compile any .cpp to .o and create directories automatically
+# Compile any .cpp into .o, creating directories automatically
 %.o: %.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean rule
+# Clean everything
 clean:
 	del /Q $(subst /,\,$(ENTITIES_OBJ)) 2>nul || true
 	del /Q $(subst /,\,$(CORE_OBJ)) 2>nul || true
