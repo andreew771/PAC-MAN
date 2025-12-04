@@ -10,3 +10,4 @@ int main() {
     Scoreboard::Save("Pacman", 100);
     return 0;
 }
+

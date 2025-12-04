@@ -1,3 +1,8 @@
+/**
+ * @file enemy.cpp
+ * @brief Implementarea clasei Enemy.
+ */
+
 #include "enemy.hpp"
 
 Enemy::Enemy(const std::string& t, int lvl) : type(t), dangerLevel(lvl) {}

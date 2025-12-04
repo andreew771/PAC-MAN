@@ -1,3 +1,8 @@
+/**
+ * @file engine.cpp
+ * @brief Implementarea clasei Engine.
+ */
+
 #include "engine.hpp"
 #include <iostream>
 #include <algorithm>
